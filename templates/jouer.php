@@ -13,17 +13,17 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 
         <h2>Choisis ton adversaire :</h2>
 
-        <div class="bouton">
-            <a href="index.php?view=jeu">En ligne</a>
-        </div>
+        <a class="bouton">
+            <p>En ligne</p>
+        </a>
 
-        <div class="bouton">
+        <a id="jeu_ordi" href="index.php?view=jeu&diff=3" class="bouton">
             <p>Ordinateur</p>
-        </div>
+        </a>
         
-        <div class="bouton">
+        <a class="bouton">
             <p>Grands joueurs</p>
-        </div>
+        </a>
 
         <h2>Difficulté :</h2>
         
@@ -31,8 +31,20 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
             <div class="star">★</div>
             <div class="star">★</div>
             <div class="star">★</div>
-            <div class="star">★</div>
+            <div class="star selected">★</div>
             <div class="star">★</div>
         </div>
     </div>
 </main>
+
+<script>
+var difficulte = 3;
+$(function(){
+ $('#difficulte .star').on('click',function(){
+    difficulte = $(this).index();
+    $('.star.selected').removeClass('selected');
+    $(this).addClass('selected');
+    $('.bouton#jeu_ordi').attr('href','index.php?view=jeu&diff='+difficulte);
+ });
+});
+</script>

@@ -30,13 +30,11 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 	<link rel="stylesheet" type="text/css" href="css/forum.css">
 	<link rel="stylesheet" type="text/css" href="css/connexion.css">
 
-
 	<script type="text/javascript" src="js/swiper.js"></script>
 	<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
-
 </head>
 <!-- **** F I N **** H E A D **** -->
 
@@ -85,7 +83,6 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 	        <li><a href="index.php?view=forum">Forum</a></li>
 	        <li><a href="index.php?view=compte">Compte</a></li>
 	        <li><a href="index.php?view=classement">Classement</a></li>
-	        <li><a href="index.php?view=random">Test Bootstrap</a></li>
 	    </ul>
 	</nav>
 </div>

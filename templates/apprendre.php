@@ -12,7 +12,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
         <h2>Règles du jeu</h2>
 
         <hr>
-        
+
         <p>On s'intéressera ici à décrire les règles de l'awalé.
         L'awalé se joue sur un plateau composé de 2 rangées de 6 trous chacune; chaque trou recevant 4 graines au début du jeu.
         Le but du jeu est de récolter plus de graines que son adversaire.</p>

@@ -33,7 +33,7 @@
 
 .star 
 {
-    padding: 0 11px 6px 11px;
+    padding: 0 10px 0 10px;
     display: inline-block;
     font-size:40px;
     color:#F5CF87;
@@ -41,8 +41,7 @@
     border-radius: 50%;
     cursor:pointer;
 }
-
-#difficulte div.star:hover ~ div.star 
+#difficulte div.star.selected ~ div.star
 {
     filter: opacity(20%);
 }

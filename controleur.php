@@ -114,7 +114,7 @@ if ($action = valider("action"))
 		break;
 	}
 }
-$urlBase = dirname($_SERVER["PHP_SELF"]) . "/index.php";
+$urlBase = dirname($_SERVER["PHP_SELF"]) . "index.php";
 header("Location:" . $urlBase . $qs);
 //qs doit contenir le symbole '?'
 
