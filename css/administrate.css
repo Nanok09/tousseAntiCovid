@@ -1,0 +1,7 @@
+/*** Mise en forme de la page d'administration : ***/
+
+#accueilAdministrate nav ul
+{
+	display: flex;
+	flex-direction: column;
+}

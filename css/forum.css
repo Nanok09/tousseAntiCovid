@@ -1,0 +1,76 @@
+/*** Mise en forme de la page du forum : ***/
+
+#listConversations
+{
+    border: 2px solid silver;
+    border-radius: 5px;
+    box-shadow: 1px 1px 20px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    width: 500px;
+    background-color: #F8F8F8;
+}
+
+#conversation
+{
+    border: solid 1px black;
+    border-radius: 10px;
+    background-color: #EFEFEF;
+    width: 300px;
+    padding: 5px;
+    margin: 5px;
+}
+
+#conversation:hover
+{
+    background-color: #D6EBF4;
+}
+
+#conversation a
+{
+    color: black;
+    font-weight: bold;
+}
+
+#conversation a:hover
+{
+    color: #39687C;
+}
+
+/*** Mise en forme des conversations : ***/
+
+#affichageMessage
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: solid 2px silver;
+    border-radius: 5px;
+    width: 400px;
+    height: 600px;
+}
+
+.message
+{
+    background: #EFEFEF;
+    color: black;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.dateMessage
+{
+    margin: 2px;
+    font-size: 0.7em;
+}
+
+#auteurMessage
+{
+    background-color: #008EE3;
+    color: white;
+}

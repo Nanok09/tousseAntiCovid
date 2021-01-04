@@ -1,0 +1,56 @@
+/*** Mise en forme du pied de page : ***/
+footer
+{
+	margin-top: 50px;
+	width: 100%;
+}
+
+.section
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	background: #EFEFEF;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+#bas_1
+{
+	text-align: center;
+	border: 2px solid #2B4D68;
+}
+
+#bas_2
+{
+	border: 2px solid #2B4D68;
+	border-top: none;
+	color: #2B4D68;
+}
+
+footer p, footer p>a
+{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	color: #2B4D68;
+}
+
+footer img
+{
+	height: 2em;
+	width: 2em;
+}
+
+footer ul>li
+{
+	font-weight: bold;
+	color: #2B4D68;
+}
+
+footer li>a
+{
+	font-weight: normal;
+	color: black;
+}

@@ -1,0 +1,105 @@
+/*** Mise en forme de l'en-tête de la page : ***/
+
+#en_tete
+{
+	width: 100%;
+	height: 6.5em;
+	margin-bottom: 50px;
+}
+
+header
+{
+	color: #2B4D68;
+	background: #EAEAEA;
+	border: solid #2B4D68 2px;
+	height: 5em;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+}
+
+header h1
+{
+	font-size: 1.5em;
+}
+
+header p
+{
+	font-style: italic;
+}
+
+header img
+{
+	height: 70px;
+	width: 70px;
+}
+
+/*** Mise en forme de la barre de navigation : ***/
+
+#en_tete nav
+{
+	background: #EAEAEA;
+	border: solid #2B4D68 2px;
+	border-top: none;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 1.5em;
+}
+
+#en_tete nav ul
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-right: 10px;
+	width: 100%;
+}
+
+#en_tete nav a
+{
+	font-size: 1.1em;
+	color : #2B4D68;
+}
+
+#en_tete nav a:hover
+{
+	color: red;
+}
+
+/* Mise en forme des icônes de connexion et d'inscription : */
+#compte
+{
+	display: flex;
+	align-items: center;
+}
+
+.cadre
+{
+	background: #212E42;
+	width: 150px;
+	height: 3.5em;
+	border-radius: 5px;
+	border: solid 2px #C5CDDA;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 5px;
+}
+
+.cadre a
+{
+	font-weight: bold;
+	color: #C5CDDA;
+}
+
+.cadre a:hover
+{
+	color: gold;
+}

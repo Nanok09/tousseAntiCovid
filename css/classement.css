@@ -1,0 +1,78 @@
+/*** Mise en forme de la page de classement : ***/
+.rank
+{
+    border: solid 2px black;
+    width: 800px;
+    height: 40px;
+}
+
+#first
+{
+  color: gold;
+  font-weight: bold;
+  border-color: gold;
+}
+
+#second
+{
+  color: silver;
+  font-weight: bold;
+  border-color: silver;
+}
+
+#third
+{
+  color: #C49C48;
+  font-weight: bold;
+  border-color: #C49C48;
+}
+
+#ranking
+{
+  border: solid 2px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#classement
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+#classement nav
+{
+  border: 2px solid silver;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  width: 300px;
+  height: 50px;
+}
+
+#classement ul
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#classement li
+{
+  border: 1px solid silver;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
+}
+
+#classement li:hover
+{
+  background-color: gold;
+  color: #212E42;
+}
