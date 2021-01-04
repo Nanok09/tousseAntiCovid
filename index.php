@@ -48,7 +48,11 @@ switch($view)
 	case "decouverte" :
 		include("templates/decouverte.php");
 	break;	
-
+	
+	case "chat" :
+		include("templates/chat.php");
+	break;
+	
 	case "inscription" :
 		include("templates/inscription.php");
 	break;		
