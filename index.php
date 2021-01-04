@@ -65,6 +65,10 @@ switch($view)
 		include("templates/forgotten_password.php");
 	break;
 
+	case "header":
+		include("templates/header2.php");
+	break;
+
 	case "Admnistrateur" :
 		securiserAdmin("connexion");
 		include("templates/administrate.php");

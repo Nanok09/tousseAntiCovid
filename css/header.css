@@ -1,105 +1,167 @@
-/*** Mise en forme de l'en-tête de la page : ***/
-
-#en_tete
-{
-	width: 100%;
-	height: 6.5em;
-	margin-bottom: 50px;
+body {
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #f7f7f7;
+}
+.navbar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 5px;
 }
 
-header
-{
-	color: #2B4D68;
-	background: #EAEAEA;
-	border: solid #2B4D68 2px;
-	height: 5em;
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	align-items: center;
-	text-align: center;
+/*
+headeer top
+*/
+.topbar{
+  background-color: #212529;
+  padding: 0;
 }
 
-header h1
-{
-	font-size: 1.5em;
+.topbar .container .row {
+  margin:-7px;
+  padding:0;
 }
 
-header p
-{
-	font-style: italic;
+.topbar .container .row .col-md-12 { 
+  padding:0;
 }
 
-header img
-{
-	height: 70px;
-	width: 70px;
+.topbar p{
+  margin:0;
+  display:inline-block;
+  font-size: 13px;
+  color: #f1f6ff;
 }
 
-/*** Mise en forme de la barre de navigation : ***/
+.topbar p > i{
+  margin-right:5px;
+}
+.topbar p:last-child{
+  text-align:right;
+} 
 
-#en_tete nav
-{
-	background: #EAEAEA;
-	border: solid #2B4D68 2px;
-	border-top: none;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: 1.5em;
+header .navbar {
+    margin-bottom: 0;
 }
 
-#en_tete nav ul
-{
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	margin-right: 10px;
-	width: 100%;
+.topbar li.topbar {
+    display: inline;
+    padding-right: 18px;
+    line-height: 52px;
+    transition: all .3s linear;
 }
 
-#en_tete nav a
-{
-	font-size: 1.1em;
-	color : #2B4D68;
+.topbar li.topbar:hover {
+    color: #1bbde8;
 }
 
-#en_tete nav a:hover
-{
-	color: red;
+.topbar ul.info i {
+    color: #131313;
+    font-style: normal;
+    margin-right: 8px;
+    display: inline-block;
+    position: relative;
+    top: 4px;
 }
 
-/* Mise en forme des icônes de connexion et d'inscription : */
-#compte
-{
-	display: flex;
-	align-items: center;
+.topbar ul.info li {
+    float: right;
+    padding-left: 30px;
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 44px;
 }
 
-.cadre
-{
-	background: #212E42;
-	width: 150px;
-	height: 3.5em;
-	border-radius: 5px;
-	border: solid 2px #C5CDDA;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 5px;
+.topbar ul.info i span {
+    color: #aaa;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 50px;
+    padding-left: 18px;
 }
 
-.cadre a
-{
-	font-weight: bold;
-	color: #C5CDDA;
+ul.social-network {
+  border:none;
+  margin:0;
+  padding:0;
 }
 
-.cadre a:hover
-{
-	color: gold;
+ul.social-network li {
+  border:none;  
+  margin:0;
+}
+
+ul.social-network li i {
+  margin:0;
+}
+
+ul.social-network li {
+    display:inline;
+    margin: 0 5px;
+    border: 0px solid #2D2D2D;
+    padding: 5px 0 0;
+    width: 32px;
+    display: inline-block;
+    text-align: center;
+    height: 32px;
+    vertical-align: baseline;
+    color: #000;
+}
+
+ul.social-network {
+  list-style: none;
+  margin: 5px 0 10px -25px;
+  float: right;
+}
+
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    will-change: opacity, transform;
+    transition: .3s ease-out;
+    color: #fff;
+}
+a {
+  color: #0a0a0a;
+  text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}
+.bg-image-full {
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.bg-dark {
+    background-color: #222!important;
+}
+
+.mx-background-top-linear {
+    background: -webkit-linear-gradient(45deg, #54d400 48%, #1b1e21 48%);
+    background: -webkit-linear-gradient(left, #54d400 48%, #1b1e21 48%);
+    background: linear-gradient(45deg, #54d400 48%, #1b1e21 48%);
 }

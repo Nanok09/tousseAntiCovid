@@ -15,26 +15,11 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>Awalé</title>
 
-	<link rel="icon" type="image/png" href="images/logo.png">
-
-	<link rel="stylesheet" type="text/css" href="css/swiper.css">
-	<link rel="stylesheet" type="text/css" href="css/animate.min.css">
-	<link rel="stylesheet" type="text/css" href="css/index.css">
-	<link rel="stylesheet" type="text/css" href="css/jeu.css">
-	<link rel="stylesheet" type="text/css" href="css/common.css">
-	<link rel="stylesheet" type="text/css" href="css/footer.css">
 	<link rel="stylesheet" type="text/css" href="css/header.css">
-	<link rel="stylesheet" type="text/css" href="css/classement.css">
-	<link rel="stylesheet" type="text/css" href="css/jouer.css">
-	<link rel="stylesheet" type="text/css" href="css/compte.css">
-	<link rel="stylesheet" type="text/css" href="css/forum.css">
-	<link rel="stylesheet" type="text/css" href="css/connexion.css">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-	<script type="text/javascript" src="js/swiper.js"></script>
-	<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-    <script type="text/javascript" src="js/game.js"></script>
 </head>
 <!-- **** F I N **** H E A D **** -->
 
@@ -42,47 +27,70 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 <!-- **** B O D Y **** -->
 <body>
 
-<div id="en_tete">
-	<header>
-	    <img src="images/logo_club_1.jpg" alt="Club Awale" class="logo"><br>
 
-	    <div id="titre">
-		    <h1>Site du club Awalé</h1>
-		    <p id="message bienvenue">
-		    	"Bienvenue sur le site du club Awale où vous allez pouvoir découvrir et jouer à l'Awalé"
-		    </p>
-	    </div>
+<!------ Include the above in your HEAD tag ---------->
 
-	    <img src="images/logo_club_2.jpg" alt="Club Awale" class="logo"><br>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- Navigation -->
+<div class="fixed-top">
+  <header class="topbar">
+      <div class="container">
+        <div class="row">
+          <!-- social icon-->
+          <div class="col-sm-12">
+            <ul class="social-network">
+              <li><a class="waves-effect waves-dark" href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a class="waves-effect waves-dark" href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a class="waves-effect waves-dark" href="#"><i class="fa fa-linkedin"></i></a></li>
+              <li><a class="waves-effect waves-dark" href="#"><i class="fa fa-pinterest"></i></a></li>
+              <li><a class="waves-effect waves-dark" href="#"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+          </div>
 
-	    <div id="compte">
-	    	<?php
-	    	if (!isset($_SESSION['isConnected']) OR $_SESSION['isConnected'] != true)
-			{
-				echo '<div id="connexion" class="cadre"><a href="index.php?view=connexion">Connexion</a></div>';
-			}
-			else
-			{
-				echo '<div id="deconnexion" class="cadre"><a href="index.php?view=deconnexion">Déconnexion</a></div>';
-			}
-			?>
+        </div>
+      </div>
+  </header>
+  <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+    <div class="container">
+      <a class="navbar-brand" rel="nofollow" target="_blank" href="http://scadonsak.com/7bF" style="text-transform: uppercase;"> NUSASATU.COM</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
 
-			<div id="inscription" class="cadre">
-				<a href="index.php?view=inscription">Inscription</a>
-			</div>
-		</div>
-	</header>
+        <ul class="navbar-nav ml-auto">
 
-	<nav>
-	    <ul>
-	        <li><a href="index.php?view=accueil">Accueil</a></li>
-	        <li><a href="index.php?view=jouer">Jouer</a></li>
-	        <li><a href="index.php?view=apprendre">Apprendre</a></li>
-	        <li><a href="index.php?view=exercices">Exercices</a></li>
-	        <li><a href="index.php?view=decouverte">Découverte</a></li>
-	        <li><a href="index.php?view=forum">Forum</a></li>
-	        <li><a href="index.php?view=compte">Compte</a></li>
-	        <li><a href="index.php?view=classement">Classement</a></li>
-	    </ul>
-	</nav>
+          <li class="nav-item active">
+            <a class="nav-link" href="https://nusasatu.com">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+
+         <li class="nav-item">
+            <a class="nav-link" href="#">Fruits</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sea food</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Vegetables</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Blog</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </div>
