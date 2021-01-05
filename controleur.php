@@ -112,6 +112,19 @@ if ($action = valider("action"))
 			if ($pseudo = valider('pseudo') AND $email = valider('email'))
 			$qs = "?view=connexion";
 		break;
+		
+		case "Filter":
+			if ($valueToSearch = valider('valueToSearch'))
+			$qs = "?view=medecin&search=".$valueToSearch;
+			else{
+				$qs = "?view=medecin";
+			}
+		break;
+		
+		case "Afficher":
+			if ($id = valider('id'))
+			$qs = "?view=fiche_patient&id=".$id;
+		break;
 	}
 }
 $urlBase = dirname($_SERVER["PHP_SELF"]) . "index.php";
