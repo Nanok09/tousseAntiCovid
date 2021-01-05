@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 05 jan. 2021 à 08:27
+-- Généré le :  mar. 05 jan. 2021 à 13:40
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -71,6 +71,23 @@ CREATE TABLE IF NOT EXISTS `data_vetement` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `medecins`
+--
+
+DROP TABLE IF EXISTS `medecins`;
+CREATE TABLE IF NOT EXISTS `medecins` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(300) NOT NULL,
+  `prenom` varchar(300) NOT NULL,
+  `mail` varchar(300) NOT NULL,
+  `tel` varchar(30) NOT NULL,
+  `adresse` varchar(300) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `patients`
 --
 
@@ -85,8 +102,18 @@ CREATE TABLE IF NOT EXISTS `patients` (
   `code postal` int(11) NOT NULL COMMENT 'code postal du patient',
   `passe` varchar(200) NOT NULL COMMENT 'mot de passe du patient',
   `sexe` char(10) NOT NULL COMMENT 'sexe du patient (H, F, N)',
+  `id_medecin` int(11) NOT NULL COMMENT 'id du médecin traitant',
+  `risque` tinyint(1) NOT NULL COMMENT 'précise si le patient est à risque',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `patients`
+--
+
+INSERT INTO `patients` (`id`, `nom`, `prenom`, `naissance`, `mail`, `adresse`, `code postal`, `passe`, `sexe`, `id_medecin`, `risque`) VALUES
+(1, 'Macud', 'Matyas', '1999-09-03', 'macud@macud.com', '1 avenue de la République, Chatillon', 92320, 'macud', 'M', 1, 0),
+(3, 'Leleu', 'Tang', '1999-12-19', 'tang@tang.com', '10 clos de villemenon, Brie Comte Robert', 77170, 'tang', 'M', 2, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
