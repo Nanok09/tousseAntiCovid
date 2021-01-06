@@ -7,15 +7,21 @@ include_once("libRequest.php");
 
 /*** Fonctions pour l'interface d'inscription : ***/
 
-function addUser($pseudo,$pass,$email)
+function addUser($nom,$prenom,$mail,$tel,$passe1,$naissance,$secu,$adresse,$code_postalt,$sexe,$id_medecin,$risque=0)
 {
-	$SQL = "INSERT INTO membres (pseudo,pass,email) VALUES ('".$pseudo."','".$pass."','".$email."')";
+	$SQL = "INSERT INTO patients (nom,prenom,mail,tel,passe,naissance,secu,adresse,code_postal,sexe,id_medecin,risque) VALUES ('".$nom."','".$prenom."','".$mail."','".$tel."','".$passe1."','".$naissance."','".$secu."','".$adresse."','".$code_postalt."','".$sexe."','".$id_medecin."','".$risque."')";
 	return SQLInsert($SQL);
 }
 
-function findUser($pseudo)
+function findUser($mail)
 {
-	$SQL = "SELECT id FROM membres WHERE pseudo='".$pseudo."'";
+	$SQL = "SELECT id FROM patients WHERE mail='".$mail."'";
+	return SQLGetCHamp($SQL);
+}
+
+function findMedecin($nom_medecin,$prenom_medecin)
+{
+	$SQL = "SELECT id FROM medecins WHERE nom='".$nom_medecin."' AND prenom='".$prenom_medecin."'";
 	return SQLGetCHamp($SQL);
 }
 
@@ -187,7 +193,7 @@ function autoriserUtilisateur($idUser)
 
 /*** Fonctions de vérification : ***/
 
-function verifUserBdd($login,$passe)
+function verifUserBdd($mail,$passe)
 {
 	// Vérifie l'identité d'un utilisateur 
 	// dont les identifiants sont passes en paramètre
@@ -196,7 +202,7 @@ function verifUserBdd($login,$passe)
 	// On utilise SQLGetCHamp
 	// si on avait besoin de plus d'un champ
 	// on aurait du utiliser SQLSelect
-	$SQL = "SELECT id FROM membres WHERE pseudo='".$login."' AND pass='".$passe."'";
+	$SQL = "SELECT id FROM patients WHERE mail='".$mail."' AND passe='".$passe."'";
 	return SQLGetCHamp($SQL);
 }
 

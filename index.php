@@ -33,12 +33,12 @@ switch($view)
 		include("templates/accueil.php");
 	break;
 
-	case "jouer" : 
-		include("templates/jouer.php");
+	case "medecin" : 
+		include("templates/medecin.php");
 	break; 
 
-	case "apprendre" : 
-		include("templates/apprendre.php");
+	case "fiche_patient" : 
+		include("templates/fiche_patient.php");
 	break;
 
 	case "exercices" :

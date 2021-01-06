@@ -12,14 +12,14 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 
 	<form method="GET" action="controleur.php" id="formulaire">  
         <div>       
-    	    <label for='pseudo'>Votre pseudo :</label>
-    	    <input id='pseudo' type="text" name="pseudo" <?php if (isset($_COOKIE['pseudo'])) echo "value=\"".$_COOKIE['pseudo']."\""; ?> />
+    	    <label for='pseudo'>Votre adresse mail :</label>
+    	    <input id='pseudo' type="text" name="mail" <?php if (isset($_COOKIE['mail'])) echo "value=\"".$_COOKIE['mail']."\""; ?> />
         </div>
         <br>
 
         <div>
     	    <label for='pass'>Votre mot de passe :</label>
-    	    <input id='pass' type="password" name="pass" value=<?php if (isset($_COOKIE['pass'])) {echo $_COOKIE['pass'];} else {echo '""';}?> />
+    	    <input id='pass' type="password" name="passe" value=<?php if (isset($_COOKIE['passe'])) {echo $_COOKIE['passe'];} else {echo '""';}?> />
         </div>
         <br>
 

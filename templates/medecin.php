@@ -1,13 +1,18 @@
 <?php
-
-if(isset($_POST['search']))
+// Si la page est appelée directement par son adresse, on redirige en passant pas la page index
+if (basename($_SERVER["PHP_SELF"]) != "index.php")
 {
-    $valueToSearch = $_POST['valueToSearch'];
+    header("Location:../index.php?view=medecin");
+    die("");
+}
+
+if(isset($_GET['search']))
+{
+    $valueToSearch = $_GET['search'];
     // search in all table columns
     // using concat mysql function
-    $query = "SELECT * FROM `patients` WHERE CONCAT(`id`, `nom`, `prenom`) LIKE '%".$valueToSearch."%'";
+    $query = "SELECT * FROM `patients` WHERE nom LIKE '".$valueToSearch."%' OR prenom LIKE '".$valueToSearch."%'";
     $search_result = filterTable($query);
-    
 }
  else {
     $query = "SELECT * FROM `patients`";
@@ -21,13 +26,12 @@ function filterTable($query)
     $filter_Result = mysqli_query($connect, $query);
     return $filter_Result;
 }
-
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>test Deroulant</title>
+        <title>Vue Médecin</title>
         <style>
             table,tr,th,td
             {
@@ -42,40 +46,45 @@ function filterTable($query)
     <body>
         <br>
         <div class="container">
-            <form action="testderoulant.php" method="post">
+            <form action="controleur.php" method="get">
             <input type="text" name="valueToSearch" placeholder="Value To Search"><br><br>
-            <input type="submit" name="search" value="Filter"><br><br>
-            
+            <input type="submit" name="action" value="Filter"><br><br>
+            </form>
             <table>
                 <tr>
                     <th>Id</th>
                     <th>Nom</th>
                     <th>Prénom</th>
+					<th>Sexe</th>
+					<th>Naissance</th>
+					<th>Adresse Mail</th>
+					<th>Téléphone</th>
 					<th>Fiche</th>
                 </tr>
 
       <!-- populate table from mysql database -->
-                <?php while($row = mysqli_fetch_array($search_result)):?>
-				<a href='http://tousseanticovid/'>		
+                <?php while($row = mysqli_fetch_array($search_result)):?>	
 					<tr>
 						<td><?php echo $row['id'];?></td>
 						<td><?php echo $row['nom'];?></td>
 						<td><?php echo $row['prenom'];?></td>
-						<td><a href='http://tousseanticovid/'>fiche</a></td>
+						<td><?php echo $row['sexe'];?></td>
+						<td><?php echo $row['naissance'];?></td>
+						<td><?php echo $row['mail'];?></td>
+						<td><?php echo $row['tel'];?></td>
+						<td>
+							<form action="controleur.php" method="get">
+								<input type="text" name="id" value=<?php echo $row['id']; ?> style="display:none">
+								<input type="submit" name="action" value="Afficher">
+							</form>
+						</td>
 					</tr>
 				
                 <?php endwhile;?>
             </table>
-        </form>
+        
         </div>
         
-    <script>
-	jQuery(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
-		});
-	});
-	</script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
