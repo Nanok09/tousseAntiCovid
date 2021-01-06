@@ -8,18 +8,26 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 ?>
 
 <main>
-	<h2>Connectez vous pour jouer en remplissant les champs suivants :</h2>
 
-	<form method="GET" action="controleur.php" id="formulaire">  
+
+    <div class="container">
+
+        <div class="row">
+          <h2>Connectez vous pour jouer en remplissant les champs suivants :</h2>  
+        </div>
+        
+    <div class="row">
+        
+    <form method="GET" action="controleur.php" id="formulaire">  
         <div>       
-    	    <label for='pseudo'>Votre pseudo :</label>
-    	    <input id='pseudo' type="text" name="pseudo" <?php if (isset($_COOKIE['pseudo'])) echo "value=\"".$_COOKIE['pseudo']."\""; ?> />
+            <label for='pseudo'>Votre adresse mail :</label>
+            <input id='pseudo' type="text" name="mail" <?php if (isset($_COOKIE['mail'])) echo "value=\"".$_COOKIE['mail']."\""; ?> />
         </div>
         <br>
 
         <div>
-    	    <label for='pass'>Votre mot de passe :</label>
-    	    <input id='pass' type="password" name="pass" value=<?php if (isset($_COOKIE['pass'])) {echo $_COOKIE['pass'];} else {echo '""';}?> />
+            <label for='pass'>Votre mot de passe :</label>
+            <input id='pass' type="password" name="passe" value=<?php if (isset($_COOKIE['passe'])) {echo $_COOKIE['passe'];} else {echo '""';}?> />
         </div>
         <br>
 
@@ -32,6 +40,12 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
         </div>
         <br>
 
-		<input name="action" type="submit" value="Connexion"/>
-	</form>
+        <input name="action" type="submit" value="Connexion"/>
+    </form>
+    </div>
+
+
+
+    </div>
+
 </main>

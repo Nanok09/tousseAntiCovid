@@ -7,7 +7,6 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 }
 ?>
 
-<main>
     <div id="listConversations">
         <h2>Créer une nouvelle conversation</h2>
 
@@ -36,4 +35,3 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
             </div><hr>
         <?php } ?>
     </div>
-</main>

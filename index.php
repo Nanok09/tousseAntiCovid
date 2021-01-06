@@ -16,7 +16,7 @@ include("libs/libSecurity.php");
 // qui contient les balises de structure de la page, le logo, etc. 
 // Le formulaire de recherche ainsi que le lien de connexion 
 // si l'utilisateur n'est pas connecté 
-//include("templates/header.php");
+include("templates/header.php");
 
 // on récupère le paramètre view éventuel 
 $view = valider("view"); 
@@ -49,8 +49,8 @@ switch($view)
 		include("templates/decouverte.php");
 	break;	
 	
-	case "chat" :
-		include("templates/chat.php");
+	case "forum" :
+		include("templates/forum.php");
 	break;
 	
 	case "inscription" :
@@ -71,9 +71,12 @@ switch($view)
 
 	case 'fiche_patient':
 		include("templates/fiche_patient.php");
-		break;
+	break;
 	case 'medecin':
 		include("templates/medecin.php");
+	break;
+	case 'statistiquesPatient':
+		include("templates/statistiques_patient.php");
 		break;
 
 	case "Admnistrateur" :
@@ -91,5 +94,6 @@ switch($view)
 }
 
 // Dans tous les cas, on affiche le pied de page
+include("templates/footer.php");
 // Qui contient les coordonnées de la personne si elle est connectée
 ?>

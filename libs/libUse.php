@@ -45,6 +45,22 @@ function valider($nom,$type="REQUEST")
 	return false; // Si pb pour récupérer la valeur 
 }
 
+/**
+ * Vérifie l'existence et la taille d'un paramètre dans le tableau POST et enregistre un cookie avec la valeur 
+ * reçue pour pouvoir la réutiliser en cas d'erreur (notamment pour la page d'inscription)
+ * @param string $nom
+ * @param string $type
+ * @return string|boolean
+ */
+ 
+ function validerPostCookie($nom)
+ {
+	if(isset($_POST[$nom]) && !($_POST[$nom] == ""))
+	{
+		setcookie($nom,$_POST[$nom],time() + 3600,null,null,false,true);
+		return proteger($_POST[$nom]); 
+	}
+ }
 
 /**
  * Vérifie l'existence (isset) et la taille (non vide) d'un paramètre dans un des tableaux GET, POST, COOKIE, SESSION

@@ -40,53 +40,84 @@ function filterTable($query)
         </style>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="../css/tableau.css">
     </head>
 	
 	
     <body>
         <br>
         <div class="container">
-            <form action="controleur.php" method="get">
-            <input type="text" name="valueToSearch" placeholder="Value To Search"><br><br>
-            <input type="submit" name="action" value="Filter"><br><br>
-            </form>
-            <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-					<th>Sexe</th>
-					<th>Naissance</th>
-					<th>Adresse Mail</th>
-					<th>Téléphone</th>
-					<th>Fiche</th>
-                </tr>
+            <div class="row">
+                <form action="controleur.php" method="get">
+                <input type="text" name="valueToSearch" placeholder="Value To Search"><br><br>
+                <input type="submit" name="action" value="Filter"><br><br>
+            </form>                
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title m-b-0">Liste des patients de x-y</h5>
+                        </div>
+                        <div class="table-responsive">
+                            
+                         <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Prénom</th>
+                                    <th scope="col">Sexe</th>
+                                    <th scope="col">Naissance</th>
+                                    <th scope="col">Adresse Mail</th>
+                                    <th scope="col">Téléphone</th>
+                                    <th scope="col">Fiche</th>
+                                </tr>
+                            </thead>
+                            <tbody class="customtable">
+                                
+
+
+                           
+
 
       <!-- populate table from mysql database -->
-                <?php while($row = mysqli_fetch_array($search_result)):?>	
-					<tr>
-						<td><?php echo $row['id'];?></td>
-						<td><?php echo $row['nom'];?></td>
-						<td><?php echo $row['prenom'];?></td>
-						<td><?php echo $row['sexe'];?></td>
-						<td><?php echo $row['naissance'];?></td>
-						<td><?php echo $row['mail'];?></td>
-						<td><?php echo $row['tel'];?></td>
-						<td>
-							<form action="controleur.php" method="get">
-								<input type="text" name="id" value=<?php echo $row['id']; ?> style="display:none">
-								<input type="submit" name="action" value="Afficher">
-							</form>
-						</td>
-					</tr>
-				
+                <?php while($row = mysqli_fetch_array($search_result)):?>   
+                    <tr>
+                        <td><?php echo $row['id'];?></td>
+                        <td><?php echo $row['nom'];?></td>
+                        <td><?php echo $row['prenom'];?></td>
+                        <td><?php echo $row['sexe'];?></td>
+                        <td><?php echo $row['naissance'];?></td>
+                        <td><?php echo $row['mail'];?></td>
+                        <td><?php echo $row['tel'];?></td>
+                        <td>
+                            <form action="controleur.php" method="get">
+                                <input type="text" name="id" value=<?php echo $row['id']; ?> style="display:none">
+                                <input type="submit" name="action" value="Afficher">
+                            </form>
+                        </td>
+                    </tr>
+                
                 <?php endwhile;?>
+                 </tbody>
             </table>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+                
+
+
+
+            </div>
+           
         
         </div>
         
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     </body>
 </html>

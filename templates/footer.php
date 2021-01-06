@@ -7,47 +7,19 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 }
 ?>
 
-<footer>
-	<div class="section" id="bas_1">
-		<ul>
-			<li>Mieux nous connaître</li>
-			<li><a href="#">Notre équipe</a></li>
-			<li><a href="#">Le club Awalé</a></li>
-			<li><a href="#">Centrale Lille</a></li>
-		</ul>
+<link rel="stylesheet" type="text/css" href="../css/sticky-footer.css">
 
-		<ul>
-			<li>Gestion de projet</li>
-			<li><a href="#">Notre organisation</a></li>
-			<li><a href="#">Le déroulement</a></li>
-			<li><a href="#">Nos sources</a></li>
-		</ul>
-
-		<ul>
-			<li>Vous avez besoin d'aide</li>
-			<li><a href="#">Assistance</a></li>
-			<li><a href="#">Application</a></li>
-			<li><a href="#">Service Client</a></li>
-		</ul>
-
-		<ul>
-			<li>Nous retrouver sur les réseaux sociaux</li>
-			<li><a href="#">Facebook</a></li>
-			<li><a href="#">Tweeter</a></li>
-			<li><a href="#">LinkedIn</a></li>
-		</ul>
-	</div>
-
-	<div class="section" id="bas_2">
-		<p><img src="images/logo.png"></p>
-		<p><span>@2020-2021 École Centrale de Lille</p>
-		<p><a href="#">Mentions légales</a></p>
-		<p><a href="#">Nous écrire</a></p>
-		<p><a href="#">Statistiques</a></p>
-		<p><a href="#">Données et cookies</a></p>
-		<p><a href="#">Version mobile</a></p>
-	</div>
+<br>
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted">
+    	@Ecole Centrale de Lille 2020-2021
+    </span>
+  </div>
 </footer>
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

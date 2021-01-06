@@ -27,11 +27,11 @@ if ($action = valider("action"))
 	{
 		case 'Connexion':
 			// On verifie la presence des champs login et passe
-			if ($pseudo = valider("pseudo") AND $pass = valider("pass"))
+			if ($mail = valider("mail") AND $passe = valider("passe"))
 			{
 				// On verifie l'utilisateur, et on crée des variables de session si tout est OK
 				// Cf. maLibSecurisation
-				$register = verifUser($pseudo,$pass,valider("coche"));
+				$register = verifUser($mail,$passe,valider("coche"));
 				if ($register)
 					$qs = "?view=accueil";
 				else
@@ -43,18 +43,24 @@ if ($action = valider("action"))
 
 		case 'Déconnexion':
 			session_destroy();
-			$qs = "?view=connexion";
+			$qs = "?view=accueil";
 		break;
 
-		case "Inscription":
-			if ($pseudo = valider('pseudo','POST') AND $email = valider('email','POST')
-			AND $pass1 = valider('pass1','POST') AND $pass2 = valider('pass2','POST'))
+		/* case "Inscription":
+			if ($nom = valider('nom','POST') AND $prenom = valider('prenom','POST')
+			AND $mail = valider('mail','POST') AND $tel = valider('tel','POST')
+			AND $passe1 = valider('passe1','POST') AND $passe2 = valider('passe2','POST')
+			AND $naissance = valider('naissance','POST') AND $secu = valider('secu','POST')
+			AND $adresse = valider('adresse','POST') AND $code_postal = valider('code_postal','POST')
+			AND $sexe = valider('sexe','POST') AND $nom_medecin = valider('nom_medecin','POST')
+			AND $prenom_medecin = valider('prenom_medecin','POST'))
 			{
-				if ($pass1 == $pass2)
+				if ($passe1 == $passe2)
 				{
-					if(!findUser($pseudo))
+					if(!findUser($mail))
 					{
-						addUser($pseudo,$pass1,$email);
+						$id_medecin = findMedecin($nom_medecin,$prenom_medecin);
+						addUser($nom,$prenom,$mail,$tel,$passe1,$naissance,$secu,$adresse,$code_postal,$sexe,$id_medecin);
 						$qs = "?view=accueil";
 					}
 					else
@@ -65,8 +71,56 @@ if ($action = valider("action"))
 			}
 			else
 				$qs = "?view=inscription&info=2";
-		break;
+		break; */
 
+		case "Inscription":
+		
+			$nom = validerPostCookie('nom');
+			$prenom = validerPostCookie('prenom');
+			$mail = validerPostCookie('mail');
+			$tel = validerPostCookie('tel');
+			$naissance = validerPostCookie('naissance');
+			$secu = validerPostCookie('secu');
+			$adresse = validerPostCookie('adresse');
+			$code_postal = validerPostCookie('code_postal');
+			$sexe = validerPostCookie('sexe');
+			$nom_medecin = validerPostCookie('nom_medecin');
+			$prenom_medecin = validerPostCookie('prenom_medecin');
+			
+			
+			if ($nom = validerPostCookie('nom') AND $prenom = validerPostCookie('prenom')
+			AND $mail = validerPostCookie('mail') AND $tel = validerPostCookie('tel')
+			AND $passe1 = valider('passe1','POST') AND $passe2 = valider('passe2','POST')
+			AND $naissance = validerPostCookie('naissance') AND $secu = validerPostCookie('secu')
+			AND $adresse = validerPostCookie('adresse') AND $code_postal = validerPostCookie('code_postal')
+			AND $sexe = validerPostCookie('sexe') AND $nom_medecin = validerPostCookie('nom_medecin')
+			AND $prenom_medecin = validerPostCookie('prenom_medecin'))
+			{
+				if ($passe1 == $passe2)
+				{
+					if ($id_medecin = findMedecin($nom_medecin,$prenom_medecin))
+					{
+						if(!findUser($mail))
+						{
+							
+							addUser($nom,$prenom,$mail,$tel,$passe1,$naissance,$secu,$adresse,$code_postal,$sexe,$id_medecin);
+							$qs = "?view=accueil";
+						}
+						else
+							$qs = "?view=inscription&info=4";
+					}
+					else
+					{
+						$qs = "?view=inscription&info=1";
+					}
+				}
+				else
+					$qs = "?view=inscription&info=2";
+			}
+			else
+				$qs = "?view=inscription&info=3";
+		break;
+		
 		case "Modifier":
 			$user = infoUser($_SESSION['id']);
 			if (valider('photo','POST') == false AND $user['photo'] != null)
@@ -116,15 +170,10 @@ if ($action = valider("action"))
 		case "Filter":
 			if ($valueToSearch = valider('valueToSearch'))
 			$qs = "?view=medecin&search=".$valueToSearch;
-			else{
-				$qs = "?view=medecin";
-			}
-		break;
 		
 		case "Afficher":
 			if ($id = valider('id'))
 			$qs = "?view=fiche_patient&id=".$id;
-		break;
 	}
 }
 $urlBase = dirname($_SERVER["PHP_SELF"]) . "index.php";
