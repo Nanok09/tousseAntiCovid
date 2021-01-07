@@ -5,14 +5,35 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 	header("Location:../index.php");
 	die("");
 }
+
+
+
+
+  $query = "SELECT * FROM `test`";
+
+  
+  $PDO = SQLSelect($query);
+  $data = parcoursRs($PDO);
+
+
 ?>
+
+
 
 <div class="container">
 	<div class="row">
-		<div class="my_dataviz">
+		<div id="my_dataviz">
 			
 		</div>
 	</div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div id="id1">
+    </div>
+  </div>
 </div>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
@@ -22,11 +43,40 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
     -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
+
 <script>
+  var data = <?php echo(json_encode($data));?>;
+  console.log(data);
+
+var mesure1 = data[0].date;
+
+var L = [];
+console.log(mesure1.split(","));
+var M = mesure1.split(",");
+console.log(parseInt(M[1]));
+for (var i = 0; i < M.length; i++) {
+  L.push(parseInt(M[i]));
+}
+
+var fonctionCool = function(mesure){
+  var L = [];
+  var M = mesure.split(",");
+  for (var i = 0; i < M.length; i++) {
+    L.push(parseInt(M[i]));
+  }
+  var dateCool = new Date(...L);
+  return dateCool
+}
+
+
+console.log(L);
+
+var date1 = new Date(...L);
+console.log(date1);
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+var margin = {top: 25, right: 30, bottom: 30, left: 60},
+    width = 560 - margin.left - margin.right,
+    height = 480 - margin.top - margin.bottom;
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
   .append("svg")
@@ -35,14 +85,17 @@ var svg = d3.select("#my_dataviz")
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
-//Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/connectedscatter.csv",
-  // When reading the csv, I must format variables:
-  function(d){
-    return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
-  },
-  // Now I can use this dataset:
-  function(data) {
+
+
+  
+
+
+    console.log(data)
+    for (var i = 0; i < data.length; i++) {
+      var truc = fonctionCool(data[i].date)
+      data[i].date = truc;
+    }
+    console.log(data);
     // Add X axis --> it is a date format
     var x = d3.scaleTime()
       .domain(d3.extent(data, function(d) { return d.date; }))
@@ -52,7 +105,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/co
       .call(d3.axisBottom(x));
     // Add Y axis
     var y = d3.scaleLinear()
-      .domain( [8000, 9200])
+      .domain( [0, 50])
       .range([ height, 0 ]);
     svg.append("g")
       .call(d3.axisLeft(y));
@@ -64,7 +117,7 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/co
       .attr("stroke-width", 1.5)
       .attr("d", d3.line()
         .x(function(d) { return x(d.date) })
-        .y(function(d) { return y(d.value) })
+        .y(function(d) { return y(d.accel) })
         )
     // Add the points
     svg
@@ -74,9 +127,17 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/co
       .enter()
       .append("circle")
         .attr("cx", function(d) { return x(d.date) } )
-        .attr("cy", function(d) { return y(d.value) } )
+        .attr("cy", function(d) { return y(d.accel) } )
         .attr("r", 5)
         .attr("fill", "#69b3a2")
-})
+
+    svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top / 2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px") 
+        .style("text-decoration", "underline")  
+        .text("Accélération en fonction du temps");
 </script>
+
 

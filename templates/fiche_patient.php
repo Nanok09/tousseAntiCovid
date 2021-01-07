@@ -7,8 +7,8 @@ include_once "libs/libSecurity.php";
 include_once "libs/libModele.php";
 
 $ouinon = array(
-	0 => "Oui",
-	1 => "Non",
+	1 => "Oui",
+	0 => "Non",
 );
 
 if (basename($_SERVER["PHP_SELF"]) != "index.php")
@@ -26,7 +26,7 @@ if ($id=valider('id', 'GET'))
 	$patientPDO = SQLSelect($queryPatient);
 	$patient = parcoursRs($patientPDO)[0];
 	//$dataVetement = parcoursRs(SQLSelect($queryDataVetement));
-	//$dataPasVetement = parcoursRs(SQLSelect($queryDataPasVetement))[0];
+	$dataPasVetement = parcoursRs(SQLSelect($queryDataPasVetement))[0];
 }
 
 ?>
@@ -130,7 +130,7 @@ if ($id=valider('id', 'GET'))
     		
     	</div>
     	<div class="row" style="border-top: 1px solid black">
-    		<div class="col"><h2>Médecin traitant: Dr.Pado</h2></div>
+    		<div class="col"><h2>Médecin traitant: Dr.Raoult</h2></div>
     	</div>
     	<div class="row">
     		<div class="col"><h5>Indicateurs vetement</h5></div>
@@ -142,7 +142,7 @@ if ($id=valider('id', 'GET'))
 		    		<div class="col"><span class="textIndicVetement">Toux seche: Oui</span></div>
 		    	</div>
 		    	<div class="row">
-		    		<div class="col"><span class="textIndicVetement">Taux d'oxygénation: 85%</span></div>
+		    		<div class="col"><span class="textIndicVetement">Taux d'oxygénation: 95%</span></div>
 		    	</div>
 		    	<div class="row">
 		    		<div class="col"><span class="textIndicVetement">Température corporelle: 38.7°C</span></div>
@@ -191,7 +191,7 @@ if ($id=valider('id', 'GET'))
     	
     	<div class="container col-6">
 			<div class="row">
-			    <div class="col">Fievre: <?php echo($ouinon[$dataPasVetement["fievre"]])?>, toux: <?php echo($ouinon[$dataPasVetement["toux"]])?>, perte du gout: <?php echo($ouinon[$dataPasVetement["perte_gout"]])?>, perte de l'odorat: <?php echo($ouinon[$dataPasVetement["perte_odorat"]])?>, <?php echo($ouinon[$dataPasVetement["autre"]])?></div>
+			    <div class="col">Fievre: <?php echo($ouinon[$dataPasVetement["fievre"]])?>, toux: <?php echo($ouinon[$dataPasVetement["toux"]])?>, perte du gout: <?php echo($ouinon[$dataPasVetement["perte_gout"]])?>, perte de l'odorat: <?php echo($ouinon[$dataPasVetement["perte_odorat"]])?>, Autre: <?php echo($dataPasVetement["autre"])?></div>
 			</div>
 			<div class="row">
 			    <div class="col">Date du début des symptomes: <?php echo($dataPasVetement["date_symp"])?> - Date de fin: <?php echo($dataPasVetement["date_fin"])?></div>
