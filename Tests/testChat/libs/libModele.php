@@ -25,18 +25,6 @@ function findUser($mail)
 	$SQL = "SELECT id FROM patients WHERE mail='".$mail."'";
 	return SQLGetCHamp($SQL);
 }
-function findUserName($id) {
-		
-	$SQL = "SELECT nom,prenom FROM patients WHERE id=".$id;
-	return ParcoursRs(SQLSelect($SQL));
-}
-
-function findMedecinName($id) {
-		
-	$SQL = "SELECT nom,prenom FROM medecins WHERE id=".$id;
-	return ParcoursRs(SQLSelect($SQL));
-}
-
 
 function findMedecin($nom_medecin,$prenom_medecin)
 {
@@ -78,34 +66,9 @@ function trancheClassement($start,$end)
 	return parcoursRs(SQLSelect($SQL));
 }
 
-/*** Fonctions pour l'interface chat : ***/
-
-function listerContactMedecin($id_medecin) {
-	//Liste tous les patients d'un médecin
-	
-	$SQL = "SELECT id,nom,prenom FROM patients WHERE id_medecin=".$id_medecin;
-	return parcoursRs(SQLSelect($SQL));
-}
-
-function listerConvChat($id_medecin,$id_patient) {
-	//Liste tous les messages envoyés et reçus entre deux utilisateurs, triés par id pour la chronologie
-	//On garde l'id_send pour distinguer dui envoie et qui reçoit
-	
-	$SQL = "SELECT id,date,msg,isMedecin FROM chat WHERE (id_send=".$id_patient." AND id_receive=".$id_medecin.") OR (id_send=".$id_medecin." AND id_receive=".$id_patient.")";
-	return parcoursRs(SQLSelect($SQL));
-}
-	
-function ajouterMsgChat($id_send,$id_receive,$msg,$isMedecin) {
-	//Ajoute un nouveau message à la BDD
-	
-	$SQL = "INSERT INTO chat(id_send,id_receive,msg,isMedecin) VALUES ('".$id_send."','".$id_receive."','".$msg."','".$isMedecin."')";
-	return SQLInsert($SQL);
-}
-	
-	
 /*** Fonctions pour l'interface forum : ***/
 
-function listerConvForum($mode="tout")
+function listerConversations($mode="tout")
 {
 	// Liste toutes les conversations ($mode="tout")
 	// OU uniquement celles actives  ($mode="actives"), ou inactives  ($mode="inactives")

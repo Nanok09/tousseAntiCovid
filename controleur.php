@@ -194,7 +194,20 @@ if ($action = valider("action"))
 			else
 				$qs = "?view=compte&error";
 		break;
-
+		
+		case "AjouterChat":
+			if($id_patient=valider('id_patient') AND $id_medecin=valider('id_medecin') AND $msg=valider('msg'))
+			ajouterMsgChat($id_medecin,$id_patient,$msg,'1');
+			$qs = "?view=chat&id=".$id_patient;
+		break;
+		
+		case "AjouterChatPatient":
+			if($id_patient=valider('id_patient') AND $id_medecin=valider('id_medecin') AND $msg=valider('msg'))
+			ajouterMsgChat($id_patient,$id_medecin,$msg,'0');
+			$qs = "?view=chatPatient";
+		break;
+		
+		
 		case "Créer":
 			if ($theme = valider('theme'))
 				creerConversation($theme,$_SESSION['id']);

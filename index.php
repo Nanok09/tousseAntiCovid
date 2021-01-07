@@ -68,6 +68,14 @@ switch($view)
 	case "forgotten_password" :
 		include("templates/forgotten_password.php");
 	break;
+	
+	case "chat" :
+		include("templates/chat.php");
+	break;
+	
+	case "chatPatient" :
+		include("templates/chatPatient.php");
+	break;
 
 	case "header":
 		include("templates/header2.php");
