@@ -114,12 +114,42 @@ a.stylise{
 		
         <div class="col-md-4">
             <div class="box">
-                <a class="stylise" href="index.php?view=forum">
-                <div class="our-services ssl">
-                    <h4>Forum</h4>
-                    <p>Accéder aux différents forum</p>
-                </div>                	
-                </a>
+				
+				<?php
+				if (!isset($_SESSION['isConnected']) OR $_SESSION['isConnected'] != true)
+				{
+					echo '<a class="stylise" href="index.php">
+							<div class="our-services ssl">
+								<h4>Chat</h4>
+								<p>Connectez vous pour accéder au chat !</p>
+							</div>                	
+						</a>';
+				}
+				else
+				{
+					if ($isMedecin = valider('isMedecin','SESSION'))
+					{
+						$bloc = '<a class="stylise" href="index.php?view=chat">
+							<div class="our-services ssl">
+								<h4>Chat</h4>
+								<p>Venez répondre à vos patients</p>
+							</div>                	
+						</a>';
+						echo $bloc;
+					}
+					else
+					{
+						$bloc = '<a class="stylise" href="index.php?view=chatPatient">
+							<div class="our-services ssl">
+								<h4>Chat</h4>
+								<p>Contactez votre médecin traitant !</p>
+							</div>                	
+						</a>';
+						echo $bloc;
+					}
+				}
+				?>
+                
 
             </div>
         </div>

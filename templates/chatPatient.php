@@ -2,7 +2,7 @@
 // Si la page est appelée directement par son adresse, on redirige en passant pas la page index
 if (basename($_SERVER["PHP_SELF"]) != "index.php")
 {
-	header("Location:../index.php?view=chat");
+	header("Location:../index.php?view=chatPatient");
 	die("");
 }
 ?>
@@ -27,59 +27,6 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 	<!--Coded With Love By Mutiullah Samim-->
 	<body>
 		<div >
-			<div class="row justify-content-center h-100">
-				<div class="col-md-4 col-xl-3 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
-					<div class="card-header">
-						<div class="input-group">
-							<input type="text" placeholder="Search..." name="" class="form-control search">
-							<div class="input-group-prepend">
-								<span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
-							</div>
-						</div>
-					</div>
-					
-					<!--Contacts du médecin-->
-					<div class="card-body contacts_body">
-					<?php
-					if ($listPatients = listerContactMedecin($_SESSION['id'])) {
-						
-						$id_patientDefault = $listPatients[0]['id'];
-						
-									
-						foreach ($listPatients as $patient) {
-							
-							echo ('
-								<a href="../index.php?view=chat&id='.$patient['id'].'">
-								<ui class="contacts">
-								<li class="active">
-									<div class="d-flex bd-highlight">
-										<div class="img_cont">
-											<img src="https://www.screenfeed.fr/wp-content/uploads/2013/10/default-avatar.png" class="rounded-circle user_img">
-											<span class="online_icon"></span>
-										</div>
-										<div class="user_info">
-											<span>'.$patient['nom'].' '.$patient['prenom'].'</span>
-											<p>'.$patient['nom'].' '.$patient['prenom'].' is online</p>
-										</div>
-									</div>
-								</li>
-					
-								</ui>
-								</a>
-							');
-						}
-					}
-					
-					//On sauvegarde l'id de l'interlocuteur
-					if(!$id_patient = valider('id')) {
-							$id_patient = $id_patientDefault;
-					}	
-						
-					?>
-					</div>
-					
-					<div class="card-footer"></div>
-				</div></div>
 				
 				
 				<div class="col-md-8 col-xl-6 chat">
@@ -92,7 +39,9 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 								</div>
 								
 								<?php
-								$coordPatient = findUserName($id_patient);
+								$sql = "SELECT id_medecin FROM patients WHERE id=".$_SESSION['id'];
+								$id_medecin = SQLGetChamp($sql);
+								$coordPatient = findMedecinName($id_medecin);
 								
 								echo ('
 								
@@ -113,9 +62,12 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 						
 						<!--Patient-->
 						<?php
-						$conversation = listerConvChat($_SESSION['id'],$id_patient);
+						
+						
+						
+						$conversation = listerConvChat($id_medecin,$_SESSION['id']);
 						foreach ($conversation as $message) {
-							if (!$message['isMedecin']) {
+							if ($message['isMedecin']) {
 								echo ('
 							<div class="d-flex justify-content-start mb-4">
 								<div class="img_cont_msg">
@@ -148,21 +100,21 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 						
 						
 						
-					</div>
-					<div class="card-footer">
+				</div>
+				<div class="card-footer">
 							<div class="input-group">
 							
 								<form method="GET" action="controleur.php" id="formulaire" class="input-group-append ">   
 								<textarea name="msg" class="form-control type_msg" placeholder="Type your message..." cols="50"></textarea>
 								<?php
-								echo ('<input type="text"	name="id_patient" value='.$id_patient.' style="display:none"/>');
-								echo ('<input type="text"	name="id_medecin" value='.$_SESSION['id'].' style="display:none"/>');								
+								echo ('<input type="text"	name="id_patient" value='.$_SESSION['id'].' style="display:none"/>');
+								echo ('<input type="text"	name="id_medecin" value='.$id_medecin.' style="display:none"/>');								
 								?>
-								<button type="submit" name="action" value="AjouterChat" class="input-group-append input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
+								<button type="submit" name="action" value="AjouterChatPatient" class="input-group-append input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
 								</form>
 							</div>
 						</div>
-				</div>
+					</div>
 			</div>
 		</div>
 	</body>
