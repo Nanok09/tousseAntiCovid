@@ -61,14 +61,72 @@ if ($info = valider('info'))
 		
 		Votre Médecin traitant : </br>
 		
-		<label for='nom_medecin'> Nom :</label><input id='nom_medecin' type="text" name="nom_medecin" maxlength="40" />
+		<label for='nom_medecin'> Nom :</label><input id='nom_medecin' type="text" name="nom_medecin" maxlength="40" <?php if (isset($_COOKIE['nom_medecin'])) {echo "value=\"".$_COOKIE['nom_medecin']."\"";} else {echo "style='background-color:rgba(255,0,0,0.6)'";}?>/>
 		
-		<label for='prenom_medecin'>Prénom :</label><input id='prenom_medecin' type="text" name="prenom_medecin" maxlength="40" /></br>
+		<label for='prenom_medecin'>Prénom :</label><input id='prenom_medecin' type="text" name="prenom_medecin" maxlength="40" <?php if (isset($_COOKIE['prenom_medecin'])) {echo "value=\"".$_COOKIE['prenom_medecin']."\"";} else {echo "style='background-color:rgba(255,0,0,0.6)'";}?>/>
+		</br>
+		</br>
+		
+		Vos données médicales : </br>
+		
+		<label for='poids'> Votre poids (en kg) : </label><input id='poids' type='text' name='poids' maxlength='40' <?php if (isset($_COOKIE['poids'])) {echo "value=\"".$_COOKIE['poids']."\"";} else {echo "style='background-color:rgba(255,0,0,0.6)'";}?>/>
+		<label for='taille'> Votre taille (en cm) : </label><input id='taille' type='text' name='taille' maxlength='40' <?php if (isset($_COOKIE['taille'])) {echo "value=\"".$_COOKIE['taille']."\"";} else {echo "style='background-color:rgba(255,0,0,0.6)'";}?>/>
+		</br>
+		
+		<label for='antecedent_cv'> Avez-vous des antécédents de maladies cardio-vasculaire : </label><input id='ouicv' type='checkbox' name='antecedent_cv' value='1' <?php if (isset($_COOKIE['antecedent_cv']) AND $_COOKIE['antecedent_cv']) echo "checked"; ?>> <label for="ouicv">Oui</label>
+																							          <input id='noncv' type='checkbox' name='antecedent_cv' value='0' <?php if (isset($_COOKIE['antecedent_cv']) AND !$_COOKIE['antecedent_cv']) echo "checked"; ?>> <label for="noncv">Non</label>
+		</br>
+		
+		<label for='diabete'> Avez-vous du diabète : </label><input id='ouidiabete' type='checkbox' name='diabete' value='1' <?php if (isset($_COOKIE['diabete']) AND $_COOKIE['diabete']) echo "checked"; ?>> <label for="ouidiabete">Oui</label>
+															 <input id='nondiabete' type='checkbox' name='diabete' value='0' <?php if (isset($_COOKIE['diabete']) AND !$_COOKIE['diabete']) echo "checked"; ?>> <label for="nondiabete">Non</label>
+		</br>
+		
+		<label for='respiratoire_chronique'> Avez-vous des antécédents respiratoires : </label><input id='ouirc' type='checkbox' name='respiratoire_chronique' value='1' <?php if (isset($_COOKIE['respiratoire_chronique']) AND $_COOKIE['respiratoire_chronique']) echo "checked"; ?>> <label for="ouirc">Oui</label>
+																							   <input id='nonrc' type='checkbox' name='respiratoire_chronique' value='0' <?php if (isset($_COOKIE['drespiratoire_chronique']) AND !$_COOKIE['respiratoire_chronique']) echo "checked"; ?>> <label for="nonrc">Non</label>
+		</br>
+		
+		<label for='dialyse'> Etes-vous en dialyse : </label><input id='ouidialyse' type='checkbox' name='dialyse' value='1' <?php if (isset($_COOKIE['dialyse']) AND $_COOKIE['dialyse']) echo "checked"; ?>> <label for="ouidialyse">Oui</label>
+															 <input id='nondialyse' type='checkbox' name='dialyse' value='0' <?php if (isset($_COOKIE['dialyse']) AND !$_COOKIE['dialyse']) echo "checked"; ?>> <label for="nondialyse">Non</label>
+		</br>
+		
+		<label for='cancer'> Etes-vous atteint de cancer : </label><input id='ouicancer' type='checkbox' name='cancer' value='1' <?php if (isset($_COOKIE['cancer']) AND $_COOKIE['cancer']) echo "checked"; ?>> <label for="ouicancer">Oui</label>
+															       <input id='noncancer' type='checkbox' name='cancer' value='0' <?php if (isset($_COOKIE['cancer']) AND !$_COOKIE['cancer']) echo "checked"; ?>> <label for="noncancer">Non</label>
+		</br>
+		</br>
+		
+		Vos symptômes : </br>
+		
+		<label for='perte_gout'> Avez-vous perdu le goût : </label><input id='ouiperte_gout' type='checkbox' name='perte_gout' value='1' <?php if (isset($_COOKIE['perte_gout']) AND $_COOKIE['perte_gout']) echo "checked"; ?>> <label for="ouiperte_gout">Oui</label>
+															       <input id='nonperte_gout' type='checkbox' name='perte_gout' value='0' <?php if (isset($_COOKIE['perte_gout']) AND !$_COOKIE['perte_gout']) echo "checked"; ?>> <label for="nondperte_gout">Non</label>
+		</br>
+		
+		<label for='perte_odorat'> Avez-vous perdu l'odorat : </label><input id='ouiperte_odorat' type='checkbox' name='perte_odorat' value='1' <?php if (isset($_COOKIE['perte_odorat']) AND $_COOKIE['perte_odorat']) echo "checked"; ?>> <label for="ouiperte_odorat">Oui</label>
+															 <input id='nonperte_odorat' type='checkbox' name='perte_odorat' value='0' <?php if (isset($_COOKIE['perte_odorat']) AND !$_COOKIE['perte_odorat']) echo "checked"; ?>> <label for="nonperte_odorat">Non</label>
+		</br>
+		
+		<label for='fievre'> Avez-vous de la fièvre : </label><input id='ouifievre' type='checkbox' name='fievre' value='1' <?php if (isset($_COOKIE['fievre']) AND $_COOKIE['fievre']) echo "checked"; ?>> <label for="ouifievre">Oui</label>
+															 <input id='nondfievre' type='checkbox' name='fievre' value='0' <?php if (isset($_COOKIE['fievre']) AND !$_COOKIE['fievre']) echo "checked"; ?>> <label for="nonfievre">Non</label>
+		</br>
+		
+		<label for='toux'> Avez-vous de la toux : </label><input id='ouitoux' type='checkbox' name='toux' value='1' <?php if (isset($_COOKIE['toux']) AND $_COOKIE['toux']) echo "checked"; ?>> <label for="ouitoux">Oui</label>
+														  <input id='nontoux' type='checkbox' name='toux' value='0' <?php if (isset($_COOKIE['toux']) AND !$_COOKIE['toux']) echo "checked"; ?>> <label for="nontoux">Non</label>
+		</br>
+		
+		<label for='date_symp'>Date de début des symptômes :</label><input id='date_symp' type="date" name="date_symp" <?php if (isset($_COOKIE['date_symp'])) {echo "value=\"".$_COOKIE['date_symp']."\"";} else {echo "style='background-color:rgba(255,0,0,0.6)'";}?>/>
+		<br>
+		
+		<label for='date_depistage'>Date de dépistage :</label><input id='date_depistage' type="date" name="date_depistage" <?php if (isset($_COOKIE['date_depistage'])) {echo "value=\"".$_COOKIE['date_symp']."\"";} else {echo "style='background-color:rgba(255,0,0,0.6)'";}?>/>
+		<br>
+		
+		<label for='autre'>Autre :</label><input id='autre' type="text" name="autre" <?php if (isset($_COOKIE['autre'])) {echo "value=\"".$_COOKIE['autre']."\"";} else {echo "style='background-color:rgba(255,0,0,0.6)'";}?>/>
+		<br>
+		
 		
 	    Vous consentez à accepter l'utilisation de vos données dans le cadre de la RGPD : </br>
 	    <!-- par défaut on considère que l'utilisateur valide l'utilisation de ses données personnelles -->
 	    <input type="checkbox" name="coche" id="coche" checked="checked"/>
 	    <label for="coche">J'autorise ce site à utiliser mes données personnelles</label><br>
+		
 
 		<input name="action" type="submit" value="Inscription"/><br>
 	</form>

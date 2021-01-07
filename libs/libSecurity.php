@@ -18,15 +18,15 @@ include_once "libModele.php";	// Car on utilise la fonction connecterUtilisateur
  * @param string $pass
  * @return false ou true ; un effet de bord est la création de variables de session
  */
-function verifUser($mail,$passe,$check=off)
+function verifUser($mail,$passe,$check=off,$isMedecin)
 {
-	$res = verifUserBDD($mail,$passe);
+	$res = verifUserBDD($mail,$passe,$isMedecin);
 	if ($res != false)
 	{
 		$_SESSION['mail']=$mail;
 		$_SESSION['id']=$res;
 		$_SESSION['heureConnexion']=date("H:i:s");
-	//	$_SESSION['isAdmin']=isAdmin($res);
+		$_SESSION['isMedecin']=$isMedecin;
 		$_SESSION['isConnected']=true;
 
 		if ($check == "on")

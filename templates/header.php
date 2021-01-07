@@ -5,6 +5,11 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 	header("Location:../index.php");
 	die("");
 }
+
+include_once "libs/libUse.php";
+include_once "libs/libRequest.php";
+include_once "libs/libSecurity.php"; 
+include_once "libs/libModele.php"; 
 ?>
 
 <!doctype html>
@@ -37,9 +42,30 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
       <li class="nav-item active">
         <a class="nav-link" href="index.php?view=accueil">Accueil <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="index.php?view=medecin">Vue médecin</a>
-      </li>
+	  <?php
+	  if ($isConnected = valider('isConnected','SESSION'))
+	  {	
+		if ($isMedecin = valider('isMedecin','SESSION'))
+					{
+						$id = valider('id','SESSION');
+						$link = 'index.php?view=medecin&id='.$id;
+						$bloc = '<li class="nav-item">
+								<a class="nav-link" href='.$link.'>Vue médecin</a>
+								</li>';
+						echo $bloc;
+					}
+					else
+					{
+						$id = valider('id','SESSION');
+						$link = 'index.php?view=fiche_patient&id='.$id;
+						$bloc = '<li class="nav-item">
+								<a class="nav-link" href='.$link.'>Vue patient</a>
+								</li>';
+						echo $bloc;
+					}
+      
+	  }
+	  ?>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="index.php?view=statistiques" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Statistiques

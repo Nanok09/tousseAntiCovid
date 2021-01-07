@@ -13,6 +13,13 @@ function addUser($nom,$prenom,$mail,$tel,$passe1,$naissance,$secu,$adresse,$code
 	return SQLInsert($SQL);
 }
 
+function addDataUser($id_patient,$sexe,$imc,$antecedent_cv,$diabete,$respiratoire_chronique,$dialyse,$cancer,$perte_gout,$perte_odorat,$fievre,$toux,$autre,$date_symp,$date_depistage,$date_fin)
+{
+	$SQL = "INSERT INTO data_pas_vetement (id_patient,sexe,imc,antecedent_cv,diabete,respiratoire_chronique,dialyse,cancer,perte_gout,perte_odorat,fievre,toux,autre,date_symp,date_depistage,date_fin) 
+	VALUES ('".$id_patient."','".$sexe."','".$imc."','".$antecedent_cv."','".$diabete."','".$respiratoire_chronique."','".$dialyse."','".$cancer."','".$perte_gout."','".$perte_odorat."','".$fievre."','".$toux."','".$autre."','".$date_symp."','".$date_depistage."','".$date_fin."')";
+	return SQLInsert($SQL);
+}
+
 function findUser($mail)
 {
 	$SQL = "SELECT id FROM patients WHERE mail='".$mail."'";
@@ -193,7 +200,7 @@ function autoriserUtilisateur($idUser)
 
 /*** Fonctions de vérification : ***/
 
-function verifUserBdd($mail,$passe)
+function verifUserBdd($mail,$passe,$isMedecin)
 {
 	// Vérifie l'identité d'un utilisateur 
 	// dont les identifiants sont passes en paramètre
@@ -202,7 +209,11 @@ function verifUserBdd($mail,$passe)
 	// On utilise SQLGetCHamp
 	// si on avait besoin de plus d'un champ
 	// on aurait du utiliser SQLSelect
-	$SQL = "SELECT id FROM patients WHERE mail='".$mail."' AND passe='".$passe."'";
+	$bdd = "patients";
+	if($isMedecin) {
+		$bdd = "medecins";
+	}
+	$SQL = "SELECT id FROM ".$bdd." WHERE mail='".$mail."' AND passe='".$passe."'";
 	return SQLGetCHamp($SQL);
 }
 

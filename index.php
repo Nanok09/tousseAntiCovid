@@ -60,6 +60,10 @@ switch($view)
 	case "connexion" :
 		include("templates/connexion.php");
 	break;
+	
+	case "connexionMedecin" :
+		include("templates/connexionMedecin.php");
+	break;
 
 	case "forgotten_password" :
 		include("templates/forgotten_password.php");

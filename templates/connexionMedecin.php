@@ -2,7 +2,7 @@
 // Si la page est appelée directement par son adresse, on redirige en passant pas la page index
 if (basename($_SERVER["PHP_SELF"]) != "index.php")
 {
-    header("Location:../index.php?view=connexion");
+    header("Location:../index.php?view=connexionMedecin");
     die("");
 }
 ?>
@@ -15,11 +15,11 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
         <div class="row">
           <h2>Connectez vous pour accéder aux fonctionnalités :</h2>  
         </div>
-		</br>
+        </br>
 		<div class="row">
-          <h2>Patient</h2>  
+          <h2>Médecin</h2>  
         </div>
-        
+		
     <div class="row">
         
     <form method="GET" action="controleur.php" id="formulaire">  
@@ -35,7 +35,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
         </div>
         <br>
 		
-		<a href="index.php?view=connexionMedecin">Connexion mode Médecin</a>
+		<a href="index.php?view=connexion">Connexion mode Patient</a>
         <br>
 		
         <a href="index.php?view=forgotten_password">Mot de passe oublié</a>
@@ -47,7 +47,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
         </div>
         <br>
 
-        <button type="submit" name="action" value="Connexion">Connexion</button>
+		<button type="submit" name="action" value="ConnexionMedecin">Connexion</button>
     </form>
     </div>
 

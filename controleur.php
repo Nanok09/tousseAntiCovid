@@ -31,7 +31,7 @@ if ($action = valider("action"))
 			{
 				// On verifie l'utilisateur, et on crée des variables de session si tout est OK
 				// Cf. maLibSecurisation
-				$register = verifUser($mail,$passe,valider("coche"));
+				$register = verifUser($mail,$passe,valider("coche"),false);
 				if ($register)
 					$qs = "?view=accueil";
 				else
@@ -39,6 +39,22 @@ if ($action = valider("action"))
 			}
 			else
 				$qs = "?view=connexion";
+		break;
+		
+		case 'ConnexionMedecin':
+			// On verifie la presence des champs login et passe
+			if ($mail = valider("mail") AND $passe = valider("passe"))
+			{
+				// On verifie l'utilisateur, et on crée des variables de session si tout est OK
+				// Cf. maLibSecurisation
+				$register = verifUser($mail,$passe,valider("coche"),true);
+				if ($register)
+					$qs = "?view=accueil";
+				else
+					$qs = "?view=connexionMedecin"; 	
+			}
+			else
+				$qs = "?view=connexionMedecin";
 		break;
 
 		case 'Déconnexion':
@@ -86,6 +102,22 @@ if ($action = valider("action"))
 			$sexe = validerPostCookie('sexe');
 			$nom_medecin = validerPostCookie('nom_medecin');
 			$prenom_medecin = validerPostCookie('prenom_medecin');
+					
+			$poids = validerPostCookie('poids');
+			$taille = validerPostCookie('taille');
+			$antecedent_cv = validerPostCookie('antecedent_cv'); 
+			$diabete = validerPostCookie('diabete');
+			$respiratoire_chronique = validerPostCookie('respiratoire_chronique');	
+			$dialyse = validerPostCookie('dialyse');
+			$cancer	= validerPostCookie('cancer');
+			$perte_gout	= validerPostCookie('perte_gout');
+			$perte_odorat = validerPostCookie('perte_odorat');
+			$fievre	= validerPostCookie('fievre');
+			$toux = validerPostCookie('toux');
+			$autre = validerPostCookie('autre');
+			$date_symp = validerPostCookie('date_symp');
+			$date_depistage	= validerPostCookie('date_depistage');
+			$date_fin="0000-00-00";
 			
 			
 			if ($nom = validerPostCookie('nom') AND $prenom = validerPostCookie('prenom')
@@ -94,7 +126,16 @@ if ($action = valider("action"))
 			AND $naissance = validerPostCookie('naissance') AND $secu = validerPostCookie('secu')
 			AND $adresse = validerPostCookie('adresse') AND $code_postal = validerPostCookie('code_postal')
 			AND $sexe = validerPostCookie('sexe') AND $nom_medecin = validerPostCookie('nom_medecin')
-			AND $prenom_medecin = validerPostCookie('prenom_medecin'))
+			AND $prenom_medecin = validerPostCookie('prenom_medecin')
+			AND $poids = validerPostCookie('poids') AND $taille = validerPostCookie('taille')
+			AND isset($_POST['antecedent_cv']) AND isset($_POST['diabete'])
+			AND isset($_POST['respiratoire_chronique'])
+			AND isset($_POST['dialyse']) AND isset($_POST[('cancer')])
+			AND isset($_POST['perte_gout']) AND isset($_POST[('perte_odorat')])
+			AND isset($_POST['fievre']) AND isset($_POST['toux'])
+			AND $autre = validerPostCookie('autre') AND	$date_symp = validerPostCookie('date_symp')
+			AND $date_depistage	= validerPostCookie('date_depistage'))
+			
 			{
 				if ($passe1 == $passe2)
 				{
@@ -105,6 +146,10 @@ if ($action = valider("action"))
 							
 							addUser($nom,$prenom,$mail,$tel,$passe1,$naissance,$secu,$adresse,$code_postal,$sexe,$id_medecin);
 							$qs = "?view=accueil";
+							$sql = "SELECT id FROM patients WHERE nom='".$nom."' AND passe='".$passe1."'";
+							$id_patient = SQLGetChamp($sql);
+							$imc = floatval($poids)/(floatval($taille)/100 * floatval($taille)/100);
+							addDataUser($id_patient,$sexe,$imc,$antecedent_cv,$diabete,$respiratoire_chronique,$dialyse,$cancer,$perte_gout,$perte_odorat,$fievre,$toux,$autre,$date_symp,$date_depistage,$date_fin);
 						}
 						else
 							$qs = "?view=inscription&info=4";

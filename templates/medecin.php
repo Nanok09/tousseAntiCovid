@@ -5,17 +5,17 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
     header("Location:../index.php?view=medecin");
     die("");
 }
-
+$id_medecin=$_SESSION['id'];
 if(isset($_GET['search']))
 {
     $valueToSearch = $_GET['search'];
     // search in all table columns
     // using concat mysql function
-    $query = "SELECT * FROM `patients` WHERE nom LIKE '".$valueToSearch."%' OR prenom LIKE '".$valueToSearch."%'";
+    $query = "SELECT * FROM `patients` WHERE nom LIKE '".$valueToSearch."%' OR prenom LIKE '".$valueToSearch."%' AND id_medecin=".$id_medecin;
     $search_result = filterTable($query);
 }
  else {
-    $query = "SELECT * FROM `patients`";
+    $query = 'SELECT * FROM `patients` WHERE id_medecin='.$id_medecin;
     $search_result = filterTable($query);
 }
 

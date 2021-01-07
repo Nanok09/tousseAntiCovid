@@ -70,15 +70,48 @@ a.stylise{
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        
+		<div class="col-md-4">
             <div class="box">
-                <a class="stylise" href="index.php?view=medecin">
-                <div class="our-services backups">
-                    <h4>Vue médecin</h4>
-                    <p>Connectez vous pour accéder á cette partie </p>
-                </div>
+				<?php
+				if (!isset($_SESSION['isConnected']) OR $_SESSION['isConnected'] != true)
+				{
+					echo '<a class="stylise" href="index.php?view=accueil">
+						<div class="our-services backups">
+						<h4>Vue patient</h4>
+						<p>Connectez vous pour accéder á cette partie </p>
+						</div>';
+				}
+				else
+				{
+					if ($isMedecin = valider('isMedecin','SESSION'))
+					{
+						$id = valider('id','SESSION');
+						$link = 'index.php?view=medecin&id='.$id;
+						$bloc = "<a class='stylise' href=".$link.">
+							<div class='our-services backups'>
+							<h4>Vue médecin</h4>
+							<p>Accédez aux données de vos patients</p>
+							</div>";
+						echo $bloc;
+					}
+					else
+					{
+						$id = valider('id','SESSION');
+						$link = 'index.php?view=fiche_patient&id='.$id;
+						$bloc = "<a class='stylise' href=".$link.">
+							<div class='our-services backups'>
+							<h4>Vue patient</h4>
+							<p>Accédez á vos données personnelles </p>
+							</div>";
+						echo $bloc;
+					}
+				}
+				?>
             </div>
         </div>
+		
+		
         <div class="col-md-4">
             <div class="box">
                 <a class="stylise" href="index.php?view=forum">
