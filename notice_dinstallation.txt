@@ -1,0 +1,63 @@
+/****** Notice d'installation système Tousse-AntiCovid pour (Windows)******/
+
+<-- Etape 1 : Installer le serveur -->
+
+1) Installer une distribution Apache/MariaDB style WAMP (https://www.wampserver.com/)
+
+2) Dans le fichier ../wamp/www/ placer le dossier "tousseanticovid"
+
+3) Dans la page d'accueil du service Apache,créer un VirtualHost et donner comme adresse : 
+C://Users/Admin/wamp/www/tousseanticovid (à adapter en fonction de l'adresse de votre site sur votre machine)
+
+
+
+<-- Etape 2 : Installer la base de données -->
+
+1) Démarrer votre distribution (WAMP)
+
+2) Dans votre navigateur, tapez "localhost" et accédez à "phpMyAdmin"
+Les identifiants de base sont : id="root", mdp=""
+
+3) Créer une nouvelle base de données
+
+4) Dans l'onglet "Importer", importer le fichier "tousse.sql"
+
+
+<-- Etape 3 : Mettre votre serveur sur le réseau local -->
+
+1) Ouvrir votre port 80 pour les protocoles TCP/UDP(voir tuto en fonction de votre machine)
+   en accordant la permission sur votre pare-feux
+
+2) Accédez aux paramètres de votre routeur en accédant dans votre navigateur à "192.168.0.1" ou "192.168.1.1"
+
+3) Fixer l'adresse IP de votre machine (dans les param DHCO)
+
+4) Ouvrir le port 80
+
+5) Modifier le fichier "httpd-vhosts.conf" de votre serveur Apache (dispo dans le menu de Wamp) comme suit :
+
+<VirtualHost Ip_de_votre_machine:80>
+	ServerName tousseanticovid
+	DocumentRoot "c://Users/Admin/wamp/tousseanticovid/"
+	<Directory  "c://Users/Admin/wamp/tousseanticovid//">
+		Options +Indexes +Includes +FollowSymLinks +MultiViews
+		AllowOverride All
+		Require local
+		Require ip votre_racine ("192.168.0.1 ou 192.168.1.1")
+
+	</Directory>
+</VirtualHost>
+
+Maintennant votre site est sur votre réseau local !
+
+
+<-- Etape 4 : Lancer l'ESP32 -->
+
+1) Ouvrir ArduinoIDE
+
+2) Ouvrir le fichier .ino de l'archive
+
+3) Modifier cette ligne avec votre IP :
+http.begin("http://192.168.1.28/Tests/serveur.php");
+
+4) Téléverser et admirer !

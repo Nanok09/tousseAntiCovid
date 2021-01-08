@@ -105,7 +105,7 @@ var svg = d3.select("#my_dataviz")
       .call(d3.axisBottom(x));
     // Add Y axis
     var y = d3.scaleLinear()
-      .domain( [0, 50])
+      .domain( [0, 30])
       .range([ height, 0 ]);
     svg.append("g")
       .call(d3.axisLeft(y));
