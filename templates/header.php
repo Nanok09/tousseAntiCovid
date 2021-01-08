@@ -77,9 +77,29 @@ include_once "libs/libModele.php";
           <a class="dropdown-item" href="index.php?view=statistiquesCovid">Stats Covid</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="index.php?view=forum">Forum</a>
-      </li>
+
+          <?php
+    if ($isConnected = valider('isConnected','SESSION'))
+    { 
+    if ($isMedecin = valider('isMedecin','SESSION'))
+          {
+            $link = 'index.php?view=chat';
+            $bloc = '<li class="nav-item">
+                <a class="nav-link disabled" href='.$link.'>Chat</a>
+                </li>';
+            echo $bloc;
+          }
+          else
+          {
+            $link = 'index.php?view=chatPatient';
+            $bloc = '<li class="nav-item">
+                <a class="nav-link disabled" href='.$link.'>Chat</a>
+                </li>';
+            echo $bloc;
+          }
+      
+    }
+    ?>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

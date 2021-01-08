@@ -7,12 +7,25 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 }
 ?>
 
-<div class="align-middle">
+<div class="container">
+	<br>
+	<br>
+	<br>
+	<div class="row">
 	<main>
     <form action="controleur.php" method="POST">
-        <p>Si vous souhaitez vous déconnecter de votre compte Tousse Anti Covid, cliquez sur le bouton suivant :</p>
-        <input name="action" type="submit" value="Déconnexion">
-        <p>Si vous ne souhaitez pas vous déconnecter, vous pouvez continuer à naviguer sur les pages du site.</p>
+    	<div class="container">
+    		<div class="row">
+    			<h5 class="col-8">Si vous souhaitez vous déconnecter de votre compte Tousse Anti Covid, cliquez sur le bouton suivant :</h5>
+        		<button name="action" type="submit" value="Déconnexion" class="btn btn-primary col-4">Déconnexion</button>
+        		<h5 class="col-12">Si vous ne souhaitez pas vous déconnecter, vous pouvez continuer à naviguer sur les pages du site.</h5>
+
+    		</div>
+
+    	</div>
+
     </form>
 	</main>
+	</div>
+
 </div>

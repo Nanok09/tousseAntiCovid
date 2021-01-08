@@ -11,6 +11,9 @@ $ouinon = array(
 	0 => "Non",
 );
 
+
+
+
 if (basename($_SERVER["PHP_SELF"]) != "index.php")
 {
     header("Location:../index.php?view=fiche_patient");
@@ -123,14 +126,14 @@ if ($id=valider('id', 'GET'))
     				<div class="col-6 additionalMargin">Adresse: <?php echo($patient["adresse"])?></div>
     				<div class="col-6 additionalMargin">Code Postal: <?php echo($patient["code_postal"])?></div>
     				<div class="col-6 additionalMargin">Téléphone: <?php echo($patient["tel"])?></div>
-    				<div class="col-6 additionalMargin">N°sécurité sociale: </div>
+    				<div class="col-6 additionalMargin">N°sécurité sociale: <?php echo($patient["secu"])?></div>
     			</div>
     			
     		</div>
     		
     	</div>
     	<div class="row" style="border-top: 1px solid black">
-    		<div class="col"><h2>Médecin traitant: Dr.Raoult</h2></div>
+    		<div class="col"><h2>Médecin traitant: Dr.<?php echo(findMedecinName($patient["id_medecin"])[0]["nom"])?></h2></div>
     	</div>
     	<div class="row">
     		<div class="col"><h5>Indicateurs vetement</h5></div>
@@ -154,7 +157,7 @@ if ($id=valider('id', 'GET'))
 		    		<div class="col"><span class="textIndicVetement">Rythme respiratoire: 12cycles/min</span></div>
 		    	</div>
 		    	<div class="row">
-		    		<div class="col"><span class="textIndicVetement" style="font-weight: bold;">Risque: </span></div>
+		    		<div class="col"><span class="textIndicVetement" style="font-weight: bold;">Score: <?php echo($patient["risque"])?></span></div>
 		    	</div>
 
     		</div>

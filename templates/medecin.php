@@ -15,7 +15,7 @@ if(isset($_GET['search']))
     $search_result = filterTable($query);
 }
  else {
-    $query = 'SELECT * FROM `patients` WHERE id_medecin='.$id_medecin;
+    $query = 'SELECT * FROM patients WHERE id_medecin='.$id_medecin.' ORDER BY risque DESC';
     $search_result = filterTable($query);
 }
 
@@ -72,6 +72,8 @@ function filterTable($query)
                                     <th scope="col">Adresse Mail</th>
                                     <th scope="col">Téléphone</th>
                                     <th scope="col">Fiche</th>
+                                    <th scope="col">Score</th>
+
                                 </tr>
                             </thead>
                             <tbody class="customtable">
@@ -97,6 +99,8 @@ function filterTable($query)
                                 <input type="submit" name="action" value="Afficher">
                             </form>
                         </td>
+                        <td><?php echo $row['risque'];?></td>
+
                     </tr>
                 
                 <?php endwhile;?>
